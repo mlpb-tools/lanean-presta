@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LANEAN — Cahier des Charges Prestataire | Mission Locale Pays Basque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --vert: #95c11f;
+  --orange: #f39200;
+  --bleu: #2897d5;
+  --rose: #d60b52;
+  --violet: #a3195b;
+  --rouge: #9f3d3f;
+  --noir: #171718;
+  --blanc: #ffffff;
+  --gris-pale: #f7f7f5;
+  --gris-clair: #e8e8e6;
+  --gris-mid: #c8c8c4;
+  --gris-texte: #5a5a58;
+  --gris-fonce: #2e2e2c;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+  --sidebar-w: 236px;
+  --header-h: 60px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--noir);background:var(--gris-pale)}
+b,strong{font-weight:600}
+
+/* ── TOPBAR ─────────────────────────────── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--header-h);background:var(--blanc);border-bottom:1px solid var(--gris-clair);display:flex;align-items:center;padding:0 1.25rem;gap:0}
+.brand{display:flex;align-items:center;gap:.7rem;padding-right:1.25rem;border-right:1px solid var(--gris-clair);flex-shrink:0}
+.brand-sq{width:34px;height:34px;background:var(--bleu);color:#fff;font-family:var(--serif);font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center}
+.brand-txt{font-family:var(--serif);font-weight:700;font-size:.9rem;color:var(--noir);line-height:1.2}
+.brand-txt small{display:block;font-family:var(--sans);font-size:.76rem;font-weight:400;color:var(--gris-texte)}
+.topnav{display:flex;align-items:stretch;height:var(--header-h);overflow-x:auto;flex:1;margin-left:.75rem}
+.topnav::-webkit-scrollbar{display:none}
+.tnav{display:flex;align-items:center;gap:.35rem;padding:0 1rem;font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--gris-texte);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;background:none;border-top:none;border-left:none;border-right:none}
+.tnav:hover{color:var(--noir)}
+.tnav.active{color:var(--noir);font-weight:600}
+.tnav[data-c=bleu].active{border-bottom-color:var(--bleu)}
+.tnav[data-c=vert].active{border-bottom-color:var(--vert)}
+.tnav[data-c=orange].active{border-bottom-color:var(--orange)}
+.tnav[data-c=rose].active{border-bottom-color:var(--rose)}
+.tnav[data-c=violet].active{border-bottom-color:var(--violet)}
+.tnav[data-c=rouge].active{border-bottom-color:var(--rouge)}
+.tnav[data-c=noir].active{border-bottom-color:var(--noir)}
+.nbadge{font-size:.72rem;font-weight:700;padding:1px 5px;border-radius:2px;color:#fff}
+.nb-bleu{background:var(--bleu)}.nb-vert{background:var(--vert)}.nb-orange{background:var(--orange)}
+.nb-rose{background:var(--rose)}.nb-violet{background:var(--violet)}.nb-rouge{background:var(--rouge)}.nb-noir{background:var(--noir)}
+.topbar-right{margin-left:auto;padding-left:1rem;border-left:1px solid var(--gris-clair);font-size:.8rem;color:var(--gris-texte);white-space:nowrap}
+
+/* ── LAYOUT ──────────────────────────────── */
+.layout{display:flex;padding-top:var(--header-h);min-height:100vh}
+.sidebar{width:var(--sidebar-w);flex-shrink:0;position:fixed;top:var(--header-h);left:0;bottom:0;background:var(--blanc);border-right:1px solid var(--gris-clair);overflow-y:auto;z-index:100;padding:1.25rem 0}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--gris-clair)}
+.slabel{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gris-mid);padding:.5rem 1.1rem .2rem;margin-top:.4rem}
+.sitem{display:flex;align-items:center;gap:.55rem;padding:.45rem 1.1rem;font-size:.88rem;color:var(--gris-texte);cursor:pointer;transition:all .12s;border-left:3px solid transparent;border:none;background:none;width:100%;text-align:left}
+.sitem:hover{background:var(--gris-pale);color:var(--noir)}
+.sitem.active{background:var(--gris-pale);color:var(--noir);font-weight:600;border-left:3px solid var(--noir)}
+.sitem.active[data-c=bleu]{border-left-color:var(--bleu)}
+.sitem.active[data-c=vert]{border-left-color:var(--vert)}
+.sitem.active[data-c=orange]{border-left-color:var(--orange)}
+.sitem.active[data-c=rose]{border-left-color:var(--rose)}
+.sitem.active[data-c=violet]{border-left-color:var(--violet)}
+.sitem.active[data-c=rouge]{border-left-color:var(--rouge)}
+.ssub{font-size:.83rem;color:var(--gris-texte);padding:.28rem 1.1rem .28rem 2.3rem;cursor:pointer;display:block;border:none;background:none;width:100%;text-align:left;transition:color .12s}
+.ssub:hover{color:var(--noir)}
+.content{margin-left:var(--sidebar-w);flex:1;min-width:0;padding:2.5rem 3rem 6rem;max-width:880px}
+
+/* ── SECTIONS ────────────────────────────── */
+.sec{display:none}
+.sec.active{display:block;animation:fin .2s ease}
+@keyframes fin{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── DOC HEADER ──────────────────────────── */
+.doc-header{padding-bottom:1.4rem;margin-bottom:2rem;border-bottom:2px solid var(--gris-clair)}
+.dh-eye{font-family:var(--sans);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem}
+.dh-eye::after{content:'';height:2px;width:28px}
+.dh-title{font-family:var(--serif);font-size:1.75rem;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.dh-sub{font-size:.95rem;color:var(--gris-texte);font-style:italic;margin-top:.25rem}
+
+/* ── SECTION TITLE ───────────────────────── */
+.stitle{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--noir);margin:2rem 0 .9rem;padding-bottom:.35rem;border-bottom:1px solid var(--gris-clair);display:flex;align-items:center;gap:.6rem}
+.stag{font-family:var(--sans);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;padding:2px 6px;border-radius:2px}
+
+/* ── INTRO BLOCK ─────────────────────────── */
+.intro-block{border:1px solid var(--gris-clair);border-left:4px solid;padding:1.1rem 1.35rem;margin-bottom:1.75rem;font-size:.95rem;line-height:1.7;color:var(--gris-fonce);background:var(--blanc)}
+
+/* ── NOTICE ──────────────────────────────── */
+.notice{background:var(--gris-pale);border:1px solid var(--gris-clair);border-left:4px solid;padding:.9rem 1.2rem;font-size:.92rem;color:var(--gris-fonce);line-height:1.65;margin-bottom:1.5rem}
+.ntitle{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+
+/* ── INFO GRID ───────────────────────────── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--gris-mid);border:1px solid var(--gris-mid);margin-bottom:1.5rem}
+.info-cell{background:var(--blanc);padding:.9rem 1.1rem;display:flex;gap:.7rem;align-items:flex-start;font-size:.92rem;line-height:1.5;color:var(--gris-fonce)}
+.ibullet{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.45rem}
+
+/* ── ROLES GRID ──────────────────────────── */
+.roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+.role-col{background:var(--blanc);border:1px solid var(--gris-clair)}
+.role-head{padding:.7rem 1.1rem;font-size:.83rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#fff;display:flex;align-items:center;gap:.4rem}
+.role-body{padding:.2rem 0}
+.role-row{padding:.55rem 1.1rem;font-size:.91rem;color:var(--gris-fonce);border-bottom:1px solid var(--gris-pale);display:flex;gap:.55rem;align-items:flex-start;line-height:1.45}
+.role-row:last-child{border-bottom:none}
+.role-row::before{content:'—';color:var(--gris-mid);flex-shrink:0;font-size:.88rem;margin-top:.05em}
+
+/* ── ACCORDION ───────────────────────────── */
+.accordion{border:1px solid var(--gris-clair);margin-bottom:1.5rem;background:var(--blanc)}
+.acc-item{border-bottom:1px solid var(--gris-clair)}
+.acc-item:last-child{border-bottom:none}
+.acc-hdr{width:100%;display:flex;align-items:flex-start;gap:.9rem;padding:.8rem 1.1rem;cursor:pointer;background:var(--blanc);border:none;text-align:left;transition:background .12s}
+.acc-hdr:hover{background:var(--gris-pale)}
+.acc-item.open>.acc-hdr{background:var(--gris-pale)}
+.acc-num{font-family:var(--sans);font-size:.76rem;font-weight:700;color:#fff;min-width:22px;height:19px;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;margin-top:2px}
+.acc-title{flex:1;font-family:var(--sans);font-size:.95rem;font-weight:600;color:var(--noir);line-height:1.4}
+.acc-arrow{font-size:.78rem;color:var(--gris-mid);flex-shrink:0;margin-top:.3rem;transition:transform .2s}
+.acc-item.open .acc-arrow{transform:rotate(90deg)}
+.acc-body{display:none;padding:0 1.1rem 1.2rem 3.2rem;border-top:1px solid var(--gris-clair)}
+.acc-item.open .acc-body{display:block}
+.acc-intro{font-size:.91rem;color:var(--gris-texte);font-style:italic;margin:.75rem 0 .7rem;line-height:1.6;padding-left:.9rem;border-left:2px solid var(--gris-clair)}
+.acc-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:.7rem}
+.col-lbl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gris-mid);margin-bottom:.45rem}
+.acc-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.acc-list li{font-size:.91rem;color:var(--gris-fonce);line-height:1.5;padding-left:1.1rem;position:relative}
+.acc-list li::before{content:'·';position:absolute;left:.2rem;font-weight:700;font-size:1rem;line-height:1.3}
+.acc-list.ok li::before{content:'✓';color:var(--vert);font-size:.82rem;top:.1em}
+.acc-list.ok li{color:var(--gris-texte)}
+
+/* ── PHASE BLOCKS ────────────────────────── */
+.phase-wrap{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.phase-block{background:var(--blanc);border:1px solid var(--gris-clair)}
+.phase-hdr{width:100%;display:flex;align-items:center;gap:.8rem;padding:.8rem 1.1rem;cursor:pointer;background:var(--blanc);border:none;text-align:left;transition:background .12s}
+.phase-hdr:hover{background:var(--gris-pale)}
+.phase-block.open .phase-hdr{background:var(--gris-pale)}
+.pbadge{font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:2px;color:#fff;flex-shrink:0;white-space:nowrap}
+.ptitle{flex:1;font-size:.97rem;font-weight:600;color:var(--noir)}
+.parrow{font-size:.78rem;color:var(--gris-mid);transition:transform .2s}
+.phase-block.open .parrow{transform:rotate(90deg)}
+.phase-body{display:none;padding:.9rem 1.2rem 1.1rem;border-top:1px solid var(--gris-clair)}
+.phase-block.open .phase-body{display:block}
+.phase-obj{border-left:3px solid;padding:.7rem .95rem;font-size:.91rem;color:var(--gris-fonce);margin-bottom:.9rem;line-height:1.55;background:var(--gris-pale)}
+.p2col{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+
+/* ── TABLES ──────────────────────────────── */
+.dtable{width:100%;border-collapse:collapse;font-size:.92rem;margin-bottom:1.5rem;background:var(--blanc);border:1px solid var(--gris-clair)}
+.dtable th{background:var(--gris-pale);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gris-texte);padding:.5rem .9rem;text-align:left;border-bottom:2px solid var(--gris-mid)}
+.dtable td{padding:.6rem .9rem;border-bottom:1px solid var(--gris-clair);color:var(--gris-fonce);vertical-align:top;line-height:1.5}
+.dtable tr:last-child td{border-bottom:none}
+.dtable tr:hover td{background:var(--gris-pale)}
+.lv-code{font-family:monospace;font-size:.82rem;font-weight:700;color:var(--gris-texte);white-space:nowrap}
+.lv-badge{display:inline-block;font-size:.71rem;font-weight:700;padding:1px 6px;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+
+/* ── CHECKLIST ───────────────────────────── */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:1.5rem;border:1px solid var(--gris-clair);background:var(--blanc)}
+.checklist li{padding:.7rem 1.1rem;border-bottom:1px solid var(--gris-pale);font-size:.92rem;color:var(--gris-fonce);display:flex;gap:.7rem;align-items:flex-start;line-height:1.5}
+.checklist li:last-child{border-bottom:none}
+.chk{width:19px;height:19px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.76rem;color:#fff;flex-shrink:0;margin-top:.1rem;font-weight:700}
+
+/* ── DOCS LIST ───────────────────────────── */
+.docs-list{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.5rem}
+.doc-item{background:var(--blanc);border:1px solid var(--gris-clair);padding:.8rem 1.1rem;display:flex;gap:.9rem;align-items:flex-start;font-size:.92rem;color:var(--gris-fonce);line-height:1.5}
+.doc-n{font-family:var(--serif);font-size:1rem;font-weight:700;min-width:20px;flex-shrink:0;margin-top:-1px}
+
+/* ── CRITÈRES TABLE ──────────────────────── */
+.ctable{width:100%;border-collapse:collapse;font-size:.92rem;margin-bottom:1.5rem;background:var(--blanc);border:1px solid var(--gris-clair)}
+.ctable th{background:var(--gris-pale);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gris-texte);padding:.5rem .9rem;border-bottom:2px solid var(--gris-mid);text-align:left}
+.ctable td{padding:.65rem .9rem;border-bottom:1px solid var(--gris-clair);vertical-align:middle;line-height:1.45}
+.ctable tr:last-child td{border-bottom:none}
+.cbar{display:flex;gap:3px;align-items:center}
+.cpip{width:14px;height:7px;border-radius:1px}
+.cpip.on{opacity:1}.cpip.off{opacity:.18}
+
+/* ── HERO ACCUEIL ────────────────────────── */
+.hero-box{background:var(--blanc);border:1px solid var(--gris-clair);padding:2rem 2.25rem;margin-bottom:1.75rem}
+.hero-name{font-family:var(--serif);font-size:2.5rem;font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:.2rem}
+.hero-sub{font-size:.95rem;color:var(--gris-texte);margin-bottom:1.4rem;line-height:1.55}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;padding-top:1.1rem;border-top:1px solid var(--gris-clair)}
+.hm{font-size:.85rem;color:var(--gris-texte);display:flex;gap:.3rem;align-items:center}
+.hm strong{color:var(--noir);font-weight:600}
+
+.axes-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gris-mid);border:1px solid var(--gris-mid);margin-bottom:1.75rem}
+.axe-hero{background:var(--blanc);padding:1.15rem 1.2rem;cursor:pointer;transition:background .12s;display:flex;flex-direction:column;gap:.35rem}
+.axe-hero:hover{background:var(--gris-pale)}
+.ah-code{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1}
+.ah-title{font-size:.92rem;font-weight:600;color:var(--noir)}
+.ah-desc{font-size:.85rem;color:var(--gris-texte);line-height:1.45}
+.ah-cta{margin-top:.25rem;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:.25rem}
+
+.method-bar{background:var(--gris-fonce);color:#fff;padding:.8rem 1.4rem;margin-bottom:1.75rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;font-size:.89rem}
+.ml{color:rgba(255,255,255,.45);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.ms{display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.9)}
+.ma{color:rgba(255,255,255,.3)}
+
+/* ── ITERATIF ────────────────────────────── */
+.iteratif{background:var(--blanc);border:1px solid var(--gris-clair);border-left:4px solid var(--vert);padding:.75rem 1.1rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;font-size:.91rem;color:var(--gris-fonce)}
+.ilabel{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--vert);flex-shrink:0}
+.isteps{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
+.istep{font-weight:600;color:var(--noir)}
+.isep{color:var(--gris-mid)}
+
+/* ── FOOTER ──────────────────────────────── */
+.doc-footer{background:var(--noir);color:rgba(255,255,255,.45);padding:1.25rem 3rem;margin-left:var(--sidebar-w);font-size:.81rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.doc-footer strong{color:rgba(255,255,255,.8)}
+
+@media(max-width:880px){
+  .sidebar{display:none}.content{margin-left:0;padding:1.5rem}.doc-footer{margin-left:0}
+  .axes-hero,.roles-grid,.acc-cols,.p2col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Mission Locale Pays Basque" style="height:38px;width:auto;display:block;flex-shrink:0">
+    <div class="brand-txt">LANEAN <small>Cahier des charges prestataire</small></div>
+  </div>
+  <nav class="topnav">
+    <button class="tnav active" data-c="noir" onclick="show('accueil',this)"><span class="nbadge nb-noir">00</span> Vue d'ensemble</button>
+    <button class="tnav" data-c="bleu" onclick="show('contexte',this)"><span class="nbadge nb-bleu">01</span> Contexte</button>
+    <button class="tnav" data-c="vert" onclick="show('principes',this)"><span class="nbadge nb-vert">02</span> Principes</button>
+    <button class="tnav" data-c="orange" onclick="show('a2',this)"><span class="nbadge nb-orange">A2</span> Communication</button>
+    <button class="tnav" data-c="rose" onclick="show('a4',this)"><span class="nbadge nb-rose">A4</span> Événementiel</button>
+    <button class="tnav" data-c="violet" onclick="show('a5',this)"><span class="nbadge nb-violet">A5</span> Terrain</button>
+    <button class="tnav" data-c="rouge" onclick="show('profil',this)"><span class="nbadge nb-rouge">06</span> Profil & Réponse</button>
+  </nav>
+  <div class="topbar-right">POCTEFA · 2024–2026</div>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+  <div class="slabel">Document</div>
+  <button class="sitem active" data-c="noir" onclick="show('accueil')">00 · Vue d'ensemble</button>
+  <button class="sitem" data-c="bleu" onclick="show('contexte')">01 · Contexte général</button>
+  <button class="sitem" data-c="vert" onclick="show('principes')">02 · Principes structurants</button>
+
+  <div class="slabel">Périmètre de la mission</div>
+  <button class="sitem" data-c="orange" onclick="show('a2')">A2 · Communication jeunes</button>
+  <button class="ssub" onclick="show('a2')">Finalité & rôles</button>
+  <button class="ssub" onclick="show('a2')">6 actions attendues</button>
+  <button class="ssub" onclick="show('a2')">Livrables A2</button>
+
+  <button class="sitem" data-c="rose" onclick="show('a4')">A4 · Événementiel</button>
+  <button class="ssub" onclick="show('a4')">A4.1 — Avant événements</button>
+  <button class="ssub" onclick="show('a4')">A4.2 — Ingénierie pendant</button>
+  <button class="ssub" onclick="show('a4')">A4.3 — Capitalisation</button>
+
+  <button class="sitem" data-c="violet" onclick="show('a5')">A5 · Actions terrain</button>
+  <button class="ssub" onclick="show('a5')">Forums & animations</button>
+  <button class="ssub" onclick="show('a5')">Langue basque</button>
+  <button class="ssub" onclick="show('a5')">Livrables A5</button>
+
+  <div class="slabel">Réponse à l'appel</div>
+  <button class="sitem" data-c="rouge" onclick="show('profil')">06 · Profil & Réponse</button>
+  <button class="ssub" onclick="show('profil')">Documents obligatoires</button>
+  <button class="ssub" onclick="show('profil')">Critères d'analyse</button>
+</aside>
+
+<main class="content">
+
+<!-- ══ §00 ACCUEIL ═══════════════════════ -->
+<div class="sec active" id="s-accueil">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--noir)">Cahier des charges — Appel à prestataire <div style="background:var(--noir);height:2px;width:28px"></div></div>
+    <div class="dh-title">LANEAN — Vue d'ensemble</div>
+    <div class="dh-sub">Mission Locale Pays Basque · Axes A2, A4 et A5 · Financement POCTEFA</div>
+  </div>
+
+  <div class="hero-box">
+    <div class="hero-name">LANEAN</div>
+    <div class="hero-sub">Projet transfrontalier visant à renforcer l'accès des jeunes à l'emploi, à la formation et à la mobilité entre les territoires basques nord et sud. Ce cahier des charges porte sur l'accompagnement global en <strong>communication, événementiel et actions terrain</strong> — mission intégrée, non sectorielle.</div>
+    <div class="hero-meta">
+      <div class="hm"><strong>Porteur :</strong> Mission Locale Pays Basque (MLPB)</div>
+      <div class="hm"><strong>Public :</strong> 16–25 ans, NEET, 4 territoires basques</div>
+      <div class="hm"><strong>Financement :</strong> POCTEFA</div>
+      <div class="hm"><strong>Nature :</strong> Mission globale et intégrée</div>
+    </div>
+  </div>
+
+  <div class="axes-hero">
+    <div class="axe-hero" onclick="show('a2')">
+      <div class="ah-code" style="color:var(--orange)">A2</div>
+      <div class="ah-title">Communication & information jeunes</div>
+      <div class="ah-desc">Stratégie multicanale : site web trilingue, réseaux sociaux, podcasts, quiz, nouveaux canaux, goodies.</div>
+      <div class="ah-cta" style="color:var(--orange)">Consulter cet axe →</div>
+    </div>
+    <div class="axe-hero" onclick="show('a4')">
+      <div class="ah-code" style="color:var(--rose)">A4</div>
+      <div class="ah-title">Coopération & Professionnalisation</div>
+      <div class="ah-desc">Ingénierie événementielle complète, communication avant/pendant, facilitation graphique, capitalisation.</div>
+      <div class="ah-cta" style="color:var(--rose)">Consulter cet axe →</div>
+    </div>
+    <div class="axe-hero" onclick="show('a5')">
+      <div class="ah-code" style="color:var(--violet)">A5</div>
+      <div class="ah-title">Actions directes vers les publics</div>
+      <div class="ah-desc">Forums (FICOBA…), parcours jeunes scénarisés, animations gamifiées, modules langue basque.</div>
+      <div class="ah-cta" style="color:var(--violet)">Consulter cet axe →</div>
+    </div>
+  </div>
+
+  <div class="method-bar">
+    <span class="ml">Démarche :</span>
+    <div class="ms"><strong>Tester</strong></div><span class="ma">→</span>
+    <div class="ms"><strong>Ajuster</strong></div><span class="ma">→</span>
+    <div class="ms"><strong>Capitaliser</strong></div><span class="ma">→</span>
+    <div class="ms"><strong>Dupliquer</strong></div>
+    <span class="ma" style="margin-left:auto">·</span>
+    <span style="color:rgba(255,255,255,.45);font-size:.86rem">Co-construction MLPB ↔ Prestataire à chaque étape</span>
+  </div>
+
+  <div class="notice" style="border-left-color:var(--rouge);background:#fff8f8">
+    <div class="ntitle" style="color:var(--rouge)">⚠ Principe non négociable — à lire avant toute chose</div>
+    La MLPB conserve la <strong>maîtrise totale des contenus techniques, pédagogiques et stratégiques</strong>. Le prestataire n'est pas un expert de substitution : il intervient sur la mise en forme, la scénarisation, la communication, l'ingénierie événementielle, l'animation et la facilitation. <strong>L'expertise métier reste interne à la MLPB.</strong> Toute offre qui ne respecte pas ce positionnement sera écartée.
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--noir)">Navigation</span> Comment utiliser ce document</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Utilisez les <strong>onglets en haut</strong> ou le menu gauche pour naviguer entre les 7 sections</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--orange)"></div><div>Chaque <strong>action attendue est cliquable</strong> pour révéler le détail complet des attentes du commanditaire</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--rose)"></div><div>Les <strong>3 phases de l'axe A4</strong> sont dépliables séparément (A4.1 / A4.2 / A4.3)</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--rouge)"></div><div>La section <strong>§06 liste les 5 documents obligatoires</strong> à fournir dans votre réponse</div></div>
+  </div>
+</div>
+
+<!-- ══ §01 CONTEXTE ═══════════════════════ -->
+<div class="sec" id="s-contexte">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--bleu)">Section 01 — Contexte général <div style="background:var(--bleu);height:2px;width:28px"></div></div>
+    <div class="dh-title">Le projet LANEAN</div>
+    <div class="dh-sub">Origine, enjeux et objectifs généraux de la mission</div>
+  </div>
+
+  <div class="intro-block" style="border-left-color:var(--bleu);background:#f0f8ff">
+    La Mission Locale Pays Basque (MLPB) est engagée dans le projet transfrontalier <strong>LANEAN</strong>, visant à renforcer l'accès des jeunes à l'emploi, à la formation et à la mobilité transfrontalière entre les territoires basques nord et sud. Dans ce cadre, la MLPB souhaite être accompagnée par un prestataire capable d'une <strong>approche globale et intégrée</strong>, articulant communication multicanale à destination des jeunes, ingénierie événementielle et facilitation, et actions terrain innovantes, en complémentarité étroite avec l'expertise interne de la MLPB.
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--bleu)">§ 1.1</span> Objectifs généraux de la mission</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Rendre le transfrontalier <strong>lisible, accessible et attractif</strong> pour les jeunes</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Toucher des publics <strong>captifs et non captifs</strong> — y compris hors des réseaux Mission Locale</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Moderniser les pratiques et outils de <strong>communication et d'animation</strong> de la MLPB</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Outiller les professionnels avec des <strong>méthodes et supports concrets</strong> réutilisables</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Expérimenter des <strong>formats innovants</strong> en conditions réelles, puis les capitaliser</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Équiper la MLPB de <strong>supports d'identification visuelle</strong> : kakemonos, stickers, tee-shirts, goodies…</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--bleu)"></div><div>Renforcer l'<strong>ancrage territorial</strong> par des actions de communication ciblées sur les 4 territoires</div></div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--bleu)">§ 1.2</span> Périmètre de la mission — 3 axes opérationnels</div>
+  <table class="dtable">
+    <thead><tr><th style="width:70px">Axe</th><th>Intitulé</th><th>Finalité synthétique</th></tr></thead>
+    <tbody>
+      <tr><td><span class="lv-badge" style="background:var(--orange);color:#fff">A2</span></td><td>Communication & information jeunes</td><td>Construire un écosystème de communication cohérent — digital, terrain, événementiel</td></tr>
+      <tr><td><span class="lv-badge" style="background:var(--rose);color:#fff">A4</span></td><td>Coopération & professionnalisation des acteurs</td><td>Faire des temps de formation des expériences collectives engageantes</td></tr>
+      <tr><td><span class="lv-badge" style="background:var(--violet);color:#fff">A5</span></td><td>Actions directes vers les publics (forums)</td><td>Mettre en pratique les outils A2 & A4 en conditions réelles avec les jeunes</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ §02 PRINCIPES ══════════════════════ -->
+<div class="sec" id="s-principes">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--vert)">Section 02 — Principes structurants <div style="background:var(--vert);height:2px;width:28px"></div></div>
+    <div class="dh-title">Gouvernance de la mission</div>
+    <div class="dh-sub">Répartition des rôles, logique de co-construction, démarche itérative</div>
+  </div>
+
+  <div class="iteratif">
+    <span class="ilabel">Logique de mission</span>
+    <div class="isteps">
+      <span class="istep">Tester</span><span class="isep">→</span>
+      <span class="istep">Ajuster</span><span class="isep">→</span>
+      <span class="istep">Capitaliser</span><span class="isep">→</span>
+      <span class="istep">Dupliquer</span>
+    </div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--vert)">§ 2.1</span> Répartition des rôles — principe fondateur</div>
+
+  <div class="notice" style="border-left-color:var(--rouge);background:#fff8f8">
+    <div class="ntitle" style="color:var(--rouge)">Point d'attention critique pour les prestataires</div>
+    La MLPB conserve la maîtrise des <strong>contenus techniques, pédagogiques et stratégiques</strong>. Le prestataire intervient sur la mise en forme, la scénarisation, la communication, l'ingénierie événementielle, l'animation et la facilitation. Les actions sont co-construites, mais <strong>l'expertise métier n'est pas externalisée</strong>.
+  </div>
+
+  <div class="roles-grid">
+    <div class="role-col">
+      <div class="role-head" style="background:var(--bleu)">🏛 MLPB — Maîtrise d'ouvrage</div>
+      <div class="role-body">
+        <div class="role-row">Définit les <strong>contenus techniques et pédagogiques</strong> de toutes les actions</div>
+        <div class="role-row">Conserve l'<strong>expertise métier</strong> (insertion, emploi, mobilité)</div>
+        <div class="role-row">Valide les productions et arbitre les orientations stratégiques</div>
+        <div class="role-row">Co-construit les actions avec le prestataire, garde la main sur la substance</div>
+        <div class="role-row">Assure la continuité avec les autres axes du projet LANEAN</div>
+      </div>
+    </div>
+    <div class="role-col">
+      <div class="role-head" style="background:var(--orange)">🤝 Prestataire — Mise en œuvre opérationnelle</div>
+      <div class="role-body">
+        <div class="role-row"><strong>Mise en forme et scénarisation</strong> des contenus fournis par la MLPB</div>
+        <div class="role-row">Conception et déploiement de la <strong>stratégie de communication</strong></div>
+        <div class="role-row"><strong>Ingénierie événementielle</strong> complète : conception, logistique, régie, facilitation</div>
+        <div class="role-row">Proposition et activation de <strong>canaux innovants</strong> pour toucher les jeunes</div>
+        <div class="role-row">Production d'<strong>outils duplicables et réutilisables</strong> sur d'autres territoires</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--vert)">§ 2.2</span> Méthodologie attendue</div>
+  <div class="info-grid">
+    <div class="info-cell"><div class="ibullet" style="background:var(--vert)"></div><div>Approche centrée sur les <strong>usages et publics jeunes</strong> (16–25 ans, NEET)</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--vert)"></div><div>Démarche <strong>itérative</strong> : chaque outil est testé, évalué, ajusté avant d'être capitalisé</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--vert)"></div><div>Forte capacité de <strong>coordination et d'adaptation</strong> au calendrier et aux contraintes terrain</div></div>
+    <div class="info-cell"><div class="ibullet" style="background:var(--vert)"></div><div>Priorité donnée à la <strong>production d'outils duplicables</strong> sur d'autres territoires</div></div>
+  </div>
+</div>
+
+<!-- ══ §A2 ════════════════════════════════ -->
+<div class="sec" id="s-a2">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--orange)">Axe A2 — Communication & information jeunes <div style="background:var(--orange);height:2px;width:28px"></div></div>
+    <div class="dh-title">Stratégie multicanale intégrée</div>
+    <div class="dh-sub">Digital · Terrain · Événementiel — cohérence obligatoire entre tous les canaux et supports</div>
+  </div>
+
+  <div class="intro-block" style="border-left-color:var(--orange);background:#fffbf5">
+    <strong>Finalité :</strong> Construire un <strong>écosystème de communication cohérent</strong>, articulant digital, terrain et événementiel, pour rendre visible et attractif le projet LANEAN auprès des jeunes des territoires basques — y compris hors des circuits traditionnels de la Mission Locale.
+  </div>
+
+  <div class="roles-grid">
+    <div class="role-col">
+      <div class="role-head" style="background:var(--bleu);font-size:.82rem">🏛 MLPB apporte</div>
+      <div class="role-body">
+        <div class="role-row">Contenus, messages clés et orientations stratégiques</div>
+        <div class="role-row">Validation de tous les supports avant diffusion</div>
+        <div class="role-row">Accès aux équipes, ressources et données internes</div>
+      </div>
+    </div>
+    <div class="role-col">
+      <div class="role-head" style="background:var(--orange);font-size:.82rem">🤝 Prestataire assure</div>
+      <div class="role-body">
+        <div class="role-row">Conception de la stratégie de communication intégrée</div>
+        <div class="role-row">Mise en forme et déploiement de tous les outils</div>
+        <div class="role-row">Proposition et activation des canaux innovants</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--orange)">§ A2.1</span> Actions attendues — cliquer sur chaque ligne pour le détail complet</div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">01</span>
+        <span class="acc-title">Rénovation du site web MLPB — entrée dédiée LANEAN–Jeunesse</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Concevoir et intégrer une entrée dédiée LANEAN au sein du site MLPB existant, spécifiquement conçue pour un public jeune 16–25 ans, et accessible dans les trois langues du territoire.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Page web <strong>trilingue</strong> (nord, sud, euskara) — accessibilité linguistique obligatoire pour le transfrontalier</li>
+              <li>Navigation <strong>adaptée aux jeunes</strong> : UX simple, mobile-first, ton direct et accessible</li>
+              <li>Intégration de <strong>QR codes dynamiques</strong> renvoyant depuis les supports terrain</li>
+              <li>Protocole de <strong>mise à jour régulière</strong> avec les équipes MLPB (à définir conjointement)</li>
+              <li>Référencement naturel (SEO) et <strong>accessibilité numérique</strong> respectés (RGAA)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Page web trilingue LANEAN–Jeunesse intégrée au site MLPB</li>
+              <li>Documentation de maintenance et protocole de mise à jour</li>
+              <li>Rapport de déploiement et tests de compatibilité</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">02</span>
+        <span class="acc-title">Supports pédagogiques multilingues, numériques et hybrides</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Concevoir des supports utilisables par les conseillers MLPB en entretien ou lors d'actions collectives, et directement accessibles par les jeunes en autonomie.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Supports en <strong>nord, sud et/ou euskara</strong> selon le territoire cible</li>
+              <li>Formats <strong>numériques</strong> : PDF interactifs, ressources web embarquables dans le site</li>
+              <li>Formats <strong>hybrides</strong> : documents imprimables renvoyant vers le digital via QR codes</li>
+              <li>Co-conception avec l'équipe pédagogique MLPB — langage accessible, visuels explicatifs, adapté au niveau de lecture des publics NEET</li>
+              <li>Chaque support doit <strong>rester exploitable sans connexion internet</strong> pour les conseillers terrain</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Supports digitaux et pédagogiques finalisés (PDF, web)</li>
+              <li>Versions imprimables et version web intégrable</li>
+              <li>Déclinaisons multilingues selon territoires</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">03</span>
+        <span class="acc-title">Campagnes réseaux sociaux ciblées jeunes</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Déployer des campagnes de communication sur les réseaux pertinents pour les 16–25 ans, avec une stratégie éditoriale adaptée aux codes de chaque plateforme et au contexte basque.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Définition d'une <strong>stratégie éditoriale</strong> avec la MLPB : ton, fréquence, thématiques, calendrier</li>
+              <li><strong>Planning de publication</strong> aligné sur les temps forts du projet LANEAN</li>
+              <li>Ciblage par <strong>territoire, tranche d'âge et profil</strong> (publicités géolocalisées si pertinent)</li>
+              <li>Création de <strong>visuels et contenus natifs</strong> adaptés à chaque plateforme (Instagram, TikTok, LinkedIn selon cibles)</li>
+              <li><strong>Analyse régulière des performances</strong> et ajustement de la stratégie selon les résultats</li>
+              <li>Cohérence visuelle stricte avec la <strong>charte graphique MLPB</strong> et l'identité LANEAN</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Stratégie éditoriale documentée et validée MLPB</li>
+              <li>Planning de contenu (minimum 3 mois glissants)</li>
+              <li>Bilans de campagne mensuels avec indicateurs clés</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">04</span>
+        <span class="acc-title">Contenus innovants : podcasts, quiz interactifs, défis, mini-parcours applicatifs</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Créer des formats engageants adaptés aux habitudes de consommation des 16–25 ans, valorisant la mobilité transfrontalière de façon concrète et attractive, sans jargon institutionnel.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li><strong>Podcasts</strong> : témoignages de jeunes en mobilité transfrontalière, formats courts (5–10 min), diffusés sur plateformes d'écoute et intégrés au site web</li>
+              <li><strong>Quiz interactifs</strong> : connaissance des droits, démarches, territoires — formats web embarquables et utilisables en atelier collectif</li>
+              <li><strong>Défis</strong> : dispositifs d'activation communautaire — challenges entre territoires, défi de candidature, etc.</li>
+              <li><strong>Mini-parcours applicatifs</strong> : guidage étape par étape vers la mobilité (simulation de démarche, check-list interactive, carte des ressources)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Épisodes podcast finalisés et publiés sur les plateformes</li>
+              <li>Quiz interactifs déployés (lien + version intégrable)</li>
+              <li>Modules défis prêts à l'emploi</li>
+              <li>Mini-parcours applicatifs livrés clés en main</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">05</span>
+        <span class="acc-title">Proposition et activation de nouveaux canaux de diffusion</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Identifier et activer des canaux hors des réseaux habituels de la Mission Locale pour toucher les jeunes non captifs — ceux qui ne fréquentent pas les structures d'accompagnement classiques.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li><strong>Publicité digitale ciblée</strong> : display, social ads géolocalisés sur les territoires basques (Facebook/Instagram/TikTok Ads)</li>
+              <li><strong>Cinéma local</strong> : spots avant séance dans les salles fréquentées par les jeunes (15–30 secondes, bilingue)</li>
+              <li><strong>Presse locale bilingue</strong> : encarts, publi-reportages, partenariats éditoriaux</li>
+              <li><strong>Lieux de passage stratégiques</strong> : stations-service, transports en commun, centres commerciaux, espaces jeunesse</li>
+              <li>Chaque canal proposé doit être <strong>justifié par un rapport coût/impact estimé</strong> et validé par la MLPB avant activation</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Note de stratégie canaux (justification + planning d'activation)</li>
+              <li>Visuels et contenus adaptés à chaque canal</li>
+              <li>Bilan d'activation avec indicateurs de portée et de coût</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--orange)">06</span>
+        <span class="acc-title">Articulation digital ↔ terrain : QR codes, goodies activables, bannières connectées</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Créer un écosystème cohérent et traçable entre supports physiques et ressources numériques, de façon que chaque objet ou support terrain devienne un point d'entrée vers le digital LANEAN.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li><strong>QR codes dynamiques</strong> : modifiables sans réimpression, renvoyant vers les ressources LANEAN — à intégrer systématiquement sur tous les supports physiques</li>
+              <li><strong>Goodies activables</strong> : tote bags, stickers, carnets portant un QR code ou un défi — la MLPB doit être équipée de ces supports d'identification (kakemonos, tee-shirts…)</li>
+              <li><strong>Bannières connectées</strong> et kakemonos : signalétique physique forum/événement renvoyant vers le digital</li>
+              <li><strong>Traçabilité</strong> : suivi des scans et du trafic généré depuis chaque support physique</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Kit complet d'identification MLPB/LANEAN (kakemonos, stickers, tee-shirts, goodies)</li>
+              <li>Système de QR codes dynamiques actif et documenté</li>
+              <li>Tableau de bord de suivi des activations physiques→digital</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--orange)">§ A2.2</span> Récapitulatif des livrables — Axe A2</div>
+  <table class="dtable">
+    <thead><tr><th style="width:72px">Réf.</th><th>Livrable</th><th>Nature</th></tr></thead>
+    <tbody>
+      <tr><td class="lv-code">L2-01</td><td>Page web trilingue LANEAN–Jeunesse (FR/ES/EU)</td><td><span class="lv-badge" style="background:var(--bleu);color:#fff">Digital</span>Intégrée au site MLPB</td></tr>
+      <tr><td class="lv-code">L2-02</td><td>Supports digitaux et pédagogiques (PDF, web)</td><td><span class="lv-badge" style="background:var(--bleu);color:#fff">Digital</span>Multilingues</td></tr>
+      <tr><td class="lv-code">L2-03</td><td>Contenus innovants : podcasts, quiz, défis, mini-parcours</td><td><span class="lv-badge" style="background:var(--orange);color:#fff">Mixte</span>Formats multiples</td></tr>
+      <tr><td class="lv-code">L2-04</td><td>Kits de communication duplicables (stratégie + templates)</td><td><span class="lv-badge" style="background:var(--vert);color:#fff">Kit</span>Réutilisables</td></tr>
+      <tr><td class="lv-code">L2-05</td><td>Kit d'identification MLPB/LANEAN (kakemonos, goodies, stickers…)</td><td><span class="lv-badge" style="background:var(--gris-fonce);color:#fff">Physique</span>Supports terrain</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ §A4 ════════════════════════════════ -->
+<div class="sec" id="s-a4">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--rose)">Axe A4 — Coopération & Professionnalisation des acteurs <div style="background:var(--rose);height:2px;width:28px"></div></div>
+    <div class="dh-title">Ingénierie événementielle & Formation</div>
+    <div class="dh-sub">Communication avant · Ingénierie & animation pendant · Capitalisation après — 3 phases distinctes</div>
+  </div>
+
+  <div class="intro-block" style="border-left-color:var(--rose);background:#fff5f8">
+    <strong>Finalité :</strong> Faire des temps de formation des <strong>expériences collectives engageantes</strong>, favorisant l'appropriation et l'évolution des pratiques professionnelles des acteurs MLPB et partenaires. Le prestataire intervient exclusivement sur l'ingénierie, la communication et la facilitation — <strong>les contenus pédagogiques restent du ressort de la MLPB</strong>.
+  </div>
+
+  <div class="notice" style="border-left-color:var(--bleu);background:#f0f8ff">
+    <div class="ntitle" style="color:var(--bleu)">Positionnement MLPB / Prestataire sur cet axe</div>
+    <strong>MLPB :</strong> apporte les contenus techniques et pédagogiques, définit les objectifs des journées, valide le déroulé.<br>
+    <strong>Prestataire :</strong> prend en charge l'événementiel complet, la communication événementielle, la facilitation, la mise en forme et la captation.
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--rose)">§ A4.1 → A4.3</span> Trois phases — cliquer pour développer chaque phase</div>
+
+  <div class="phase-wrap">
+    <div class="phase-block">
+      <button class="phase-hdr" onclick="togglePhase(this.parentElement)">
+        <span class="pbadge" style="background:var(--bleu)">A4.1</span>
+        <span class="ptitle">Communication AVANT les événements</span>
+        <span class="parrow">▶</span>
+      </button>
+      <div class="phase-body">
+        <div class="phase-obj" style="border-left-color:var(--bleu)">
+          <strong>Objectifs :</strong> Mobiliser les participants · Préparer les postures et attentes · Donner du sens aux événements en amont — avant même la journée de formation.
+        </div>
+        <div class="p2col">
+          <div>
+            <div class="col-lbl">Actions attendues</div>
+            <ul class="acc-list">
+              <li>Définition d'un <strong>fil narratif</strong> pour les deux journées de formation, co-construit avec la MLPB</li>
+              <li>Création des supports de communication amont : <strong>invitations visuelles et personnalisées</strong>, <strong>teasers</strong> (vidéo courte ou visuel animé), <strong>messages clés</strong> à transmettre avant la journée</li>
+              <li>Contribution à la <strong>préparation des participants</strong> : supports introductifs envoyés en amont (résumé du programme, questions de positionnement, ressources de mise en condition)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables A4.1</div>
+            <ul class="acc-list ok">
+              <li>Kit de communication amont (invitation + teaser + messages clés)</li>
+              <li>Trame de mobilisation des participants (contenu + calendrier d'envoi)</li>
+              <li>Supports introductifs à destination des participants</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <button class="phase-hdr" onclick="togglePhase(this.parentElement)">
+        <span class="pbadge" style="background:var(--rose)">A4.2</span>
+        <span class="ptitle">Ingénierie événementielle & Animation PENDANT les journées</span>
+        <span class="parrow">▶</span>
+      </button>
+      <div class="phase-body">
+        <div class="phase-obj" style="border-left-color:var(--rose)">
+          <strong>Principe :</strong> Le prestataire prend en charge la totalité de l'ingénierie de la journée — scénarisation, animation, facilitation, régie — sur la base des contenus définis par la MLPB.
+        </div>
+        <div class="p2col">
+          <div>
+            <div class="col-lbl">Actions attendues</div>
+            <ul class="acc-list">
+              <li><strong>Scénarisation complète</strong> des deux journées : déroulé minute par minute, répartition des temps, logistique des espaces, transitions entre séquences</li>
+              <li>Animation de <strong>temps participatifs</strong> : ateliers en sous-groupes, techniques d'intelligence collective (World Café, Fishbowl, etc.), débriefs pléniers</li>
+              <li><strong>Facilitation graphique</strong> en temps réel : synthèse visuelle des échanges, cartographies, frises chronologiques sur paperboard ou numérique</li>
+              <li>Appui à la <strong>communication pendant l'événement</strong> : captation photo/vidéo légère, valorisation des temps forts sur les réseaux en temps réel si pertinent</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables A4.2</div>
+            <ul class="acc-list ok">
+              <li>Scénarios détaillés des deux journées (document de régie complet)</li>
+              <li>Supports d'animation (slides, outils d'atelier, fiches facilitateur)</li>
+              <li>Traces visuelles de la facilitation graphique</li>
+              <li>Synthèses des échanges et productions des ateliers</li>
+              <li>Captation photo et/ou vidéo légère de la journée</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <button class="phase-hdr" onclick="togglePhase(this.parentElement)">
+        <span class="pbadge" style="background:var(--vert)">A4.3</span>
+        <span class="ptitle">Co-construction & Capitalisation APRÈS les journées</span>
+        <span class="parrow">▶</span>
+      </button>
+      <div class="phase-body">
+        <div class="phase-obj" style="border-left-color:var(--vert)">
+          <strong>Objectif :</strong> Transformer chaque événement en ressource réutilisable. Chaque format testé doit être documenté de façon à pouvoir être reproduit par d'autres équipes sur d'autres territoires.
+        </div>
+        <div class="p2col">
+          <div>
+            <div class="col-lbl">Actions attendues</div>
+            <ul class="acc-list">
+              <li>Travail en <strong>co-construction étroite avec la MLPB</strong> tout au long du processus (avant, pendant et après)</li>
+              <li><strong>Ajustement des formats</strong> sur la base des retours participants : analyse des évaluations, identification des points d'amélioration</li>
+              <li>Production de <strong>supports réutilisables et transférables</strong> : kits clés en main documentés, fiches méthodes pas à pas</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables A4.3</div>
+            <ul class="acc-list ok">
+              <li>Kits pédagogiques (formats prêts à l'emploi, clés en main)</li>
+              <li>Fiches méthodes reproductibles (pas à pas facilitateur)</li>
+              <li>Référentiel duplicable documenté pour d'autres territoires</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §A5 ════════════════════════════════ -->
+<div class="sec" id="s-a5">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--violet)">Axe A5 — Actions directes vers les publics <div style="background:var(--violet);height:2px;width:28px"></div></div>
+    <div class="dh-title">Forums & Animations terrain</div>
+    <div class="dh-sub">Mise en pratique des outils A2 & A4 en conditions réelles — ex. forum FICOBA et événements existants</div>
+  </div>
+
+  <div class="intro-block" style="border-left-color:var(--violet);background:#fdf5ff">
+    <strong>Finalité :</strong> Mettre en pratique et tester les outils et méthodes développés dans les axes A2 et A4, <strong>en conditions réelles</strong>, directement avec les jeunes (16–25 ans) lors de forums emploi, de salons ou d'autres événements existants. Chaque intervention constitue un test grandeur nature devant aboutir à un <strong>kit duplicable</strong>.
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--violet)">§ A5.1</span> Actions attendues — cliquer pour le détail de chaque module</div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--violet)">01</span>
+        <span class="acc-title">Interventions sur forums existants — conception, installation et animation</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Intervenir lors de forums emploi existants (ex. FICOBA à Irun, salons locaux) pour y déployer les outils LANEAN et animer un espace dédié aux jeunes.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Prise en charge de la <strong>logistique d'intervention</strong> : installation, signalétique, matériel technique, coordination organisateurs</li>
+              <li>Animation d'un <strong>espace LANEAN distinct et identifiable</strong> dans le forum</li>
+              <li>Coordination en amont avec les <strong>organisateurs du forum</strong> et la MLPB</li>
+              <li>Adaptation du dispositif à chaque contexte : taille du forum, profil des jeunes présents, contraintes logistiques</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Dossier de préparation de chaque intervention (J-15)</li>
+              <li>Bilan d'intervention (fréquentation, retours, indicateurs quantitatifs)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--violet)">02</span>
+        <span class="acc-title">Parcours jeunes non statiques — scénarisés et dynamiques</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Concevoir des parcours qui font bouger les jeunes dans l'espace du forum, plutôt que de les asseoir devant un exposé. Chaque parcours doit être scénarisé comme une expérience immersive et concrète.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Parcours guidés <strong>étape par étape</strong> dans l'espace forum (via QR codes, cartes ou application)</li>
+              <li><strong>Scénarisation narrative</strong> : chaque étape correspond à une situation professionnelle réelle (chercher un logement côté sud, comprendre son contrat, se présenter à un RH…)</li>
+              <li>Format <strong>individuel ou en petit groupe</strong> (2–4 personnes maximum)</li>
+              <li>Durée maximum : <strong>20 à 40 minutes</strong> par parcours</li>
+              <li>Livré <strong>clé en main</strong> : guide animateur + matériel complet + notice de montage</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Kit parcours jeunes complet (guide animateur + matériel + notice)</li>
+              <li>Version duplicable documentée pour d'autres forums</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--violet)">03</span>
+        <span class="acc-title">Animations digitales et gamifiées : quiz live, défis, parcours guidés interactifs</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Déployer des outils numériques interactifs pour animer l'espace LANEAN en forum et rendre l'information accessible et engageante pour des jeunes peu familiers des démarches transfrontalières.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li><strong>TV tactile</strong> : borne interactive diffusant quiz et contenus LANEAN — plug & play, autonome</li>
+              <li><strong>QR codes dynamiques</strong> à scanner sur smartphone, renvoyant vers des expériences courtes et engageantes</li>
+              <li><strong>Quiz en temps réel</strong> (Kahoot ou équivalent) animés devant un groupe de jeunes — session de 15 min maximum</li>
+              <li><strong>Défis entre participants</strong> : gamification légère pour encourager l'exploration et la prise d'initiative</li>
+              <li>Tous les formats : durée <strong>5–15 minutes maximum</strong>, adaptés à l'attention en contexte forum</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Borne TV tactile configurée et documentée (notice d'installation)</li>
+              <li>Kit d'animations gamifiées prêt à l'emploi</li>
+              <li>Notice de déploiement autonome par un conseiller MLPB</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--violet)">04</span>
+        <span class="acc-title">Modules courts de langue basque fonctionnelle</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">La langue basque (euskara) constitue un frein réel à la mobilité transfrontalière. L'objectif est de proposer des modules courts, pratiques et non scolaires, qui donnent aux jeunes des clés linguistiques opérationnelles pour un premier contact professionnel côté sud.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li>Modules en <strong>situation professionnelle</strong> : se présenter à un entretien, contacter une administration, comprendre un contrat</li>
+              <li><strong>Quiz linguistiques</strong> : apprendre en jouant, formats courts (5–10 questions)</li>
+              <li><strong>Mini-podcasts en euskara</strong> avec sous-titres en langue nord — témoignages de jeunes en mobilité ou de professionnels RH</li>
+              <li>Contenus co-construits avec un <strong>locuteur natif ou partenaire linguistique</strong> (à identifier avec la MLPB)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Kit « langue basque & transfrontalier » (quiz + podcasts + fiches)</li>
+              <li>Version intégrable au site web et aux supports terrain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-hdr" onclick="toggleAcc(this.parentElement)">
+        <span class="acc-num" style="background:var(--violet)">05</span>
+        <span class="acc-title">Recueil et analyse des retours jeunes et professionnels</span>
+        <span class="acc-arrow">▶</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-intro">Chaque intervention terrain constitue un test. Le prestataire doit embarquer des outils d'évaluation dans les animations elles-mêmes et restituer des analyses exploitables à la MLPB pour permettre l'ajustement des dispositifs.</div>
+        <div class="acc-cols">
+          <div>
+            <div class="col-lbl">Attendus détaillés</div>
+            <ul class="acc-list">
+              <li><strong>Outils de recueil embarqués</strong> dans les animations : évaluation à chaud (quiz de fin, boutons d'avis, formulaire express)</li>
+              <li>Retours structurés des <strong>professionnels MLPB</strong> présents lors des interventions (grille d'observation)</li>
+              <li><strong>Analyse qualitative et quantitative</strong> : ce qui a fonctionné, ce qui n'a pas fonctionné, ce qu'il faut modifier</li>
+              <li>Restitution formalisée à la MLPB <strong>dans les 15 jours suivant chaque intervention</strong></li>
+              <li>Intégration des enseignements dans la démarche itérative pour la prochaine intervention</li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-lbl">Livrables associés</div>
+            <ul class="acc-list ok">
+              <li>Rapport d'évaluation post-intervention (qualitatif + quantitatif)</li>
+              <li>Recommandations d'ajustement pour l'intervention suivante</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--violet)">§ A5.2</span> Récapitulatif des livrables — Axe A5</div>
+  <table class="dtable">
+    <thead><tr><th style="width:72px">Réf.</th><th>Livrable</th><th>Nature</th></tr></thead>
+    <tbody>
+      <tr><td class="lv-code">L5-01</td><td>Parcours jeunes clés en main (guide animateur + matériel + notice)</td><td><span class="lv-badge" style="background:var(--violet);color:#fff">Kit</span>Duplicable</td></tr>
+      <tr><td class="lv-code">L5-02</td><td>Kit d'animations gamifiées (TV tactile + quiz + défis)</td><td><span class="lv-badge" style="background:var(--orange);color:#fff">Mixte</span>Numérique + matériel</td></tr>
+      <tr><td class="lv-code">L5-03</td><td>Kits forums duplicables (tous les outils testés et ajustés)</td><td><span class="lv-badge" style="background:var(--vert);color:#fff">Kit</span>Prêt à l'emploi</td></tr>
+      <tr><td class="lv-code">L5-04</td><td>Kit « langue basque & transfrontalier »</td><td><span class="lv-badge" style="background:var(--bleu);color:#fff">Mixte</span>Quiz + podcasts + fiches</td></tr>
+      <tr><td class="lv-code">L5-05</td><td>Rapports d'évaluation post-intervention</td><td><span class="lv-badge" style="background:var(--gris-fonce);color:#fff">Document</span>Par intervention</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ §06 PROFIL ═════════════════════════ -->
+<div class="sec" id="s-profil">
+  <div class="doc-header">
+    <div class="dh-eye" style="color:var(--rouge)">Section 06 — Profil & Modalités de réponse <div style="background:var(--rouge);height:2px;width:28px"></div></div>
+    <div class="dh-title">Ce que nous attendons du prestataire</div>
+    <div class="dh-sub">Profil requis · Documents obligatoires à fournir · Critères d'analyse des offres</div>
+  </div>
+
+  <div class="stitle"><span class="stag" style="background:var(--rouge)">§ 6.1</span> Profil du prestataire attendu</div>
+  <ul class="checklist">
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Capacité démontrée à mener une <strong>approche globale et intégrée</strong> combinant communication, événementiel et actions terrain — une agence sectorielle couvrant un seul domaine ne peut pas répondre à ce cahier des charges</div></li>
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Compétences combinées <strong>disponibles au sein de la même structure</strong> : stratégie de communication, création de contenus, ingénierie événementielle, facilitation de groupes</div></li>
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Expérience avérée avec des <strong>publics jeunes (16–25 ans)</strong> et des projets à dimension territoriale ou sociale — à démontrer par des références</div></li>
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Capacité et posture de <strong>co-construction avec une équipe projet interne</strong> : le prestataire doit savoir travailler en complémentarité, sans autonomie excessive sur la substance des contenus</div></li>
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Maîtrise des <strong>outils numériques interactifs</strong> : plateformes quiz, TV tactile, QR codes dynamiques, réseaux sociaux professionnels et jeunes</div></li>
+    <li><div class="chk" style="background:var(--rouge)">✓</div><div>Connaissance ou forte capacité d'adaptation au contexte <strong>transfrontalier basque</strong> : bi/trilinguisme, culture territoriale, réseaux locaux, spécificités POCTEFA</div></li>
+  </ul>
+
+  <div class="stitle"><span class="stag" style="background:var(--rouge)">§ 6.2</span> Documents à fournir obligatoirement</div>
+  <ol class="docs-list">
+    <li class="doc-item"><div class="doc-n" style="color:var(--rouge)">1.</div><div><strong>Note de compréhension du projet</strong> — démontrant que le prestataire a saisi les enjeux de LANEAN, les spécificités du public cible 16–25 ans NEET, le contexte transfrontalier basque et la logique de co-construction avec la MLPB</div></li>
+    <li class="doc-item"><div class="doc-n" style="color:var(--rouge)">2.</div><div><strong>Proposition méthodologique détaillée par axe</strong> — A2 / A4 / A5 : pour chaque axe, décrire précisément la démarche proposée, les outils mobilisés, les étapes clés et les modalités de co-construction avec la MLPB. Une proposition globalisée sans ventilation par axe sera considérée comme incomplète.</div></li>
+    <li class="doc-item"><div class="doc-n" style="color:var(--rouge)">3.</div><div><strong>Références comparables</strong> — projets menés avec des publics jeunes, des collectivités territoriales ou dans des contextes de financement européen. Avec contacts de commanditaires si possible.</div></li>
+    <li class="doc-item"><div class="doc-n" style="color:var(--rouge)">4.</div><div><strong>Budget détaillé par axe</strong> — A2 / A4 / A5 : décomposé par action ou phase, avec justification des postes principaux. Un budget globalisé et non ventilé par axe sera pénalisé dans l'analyse.</div></li>
+    <li class="doc-item"><div class="doc-n" style="color:var(--rouge)">5.</div><div><strong>Planning prévisionnel des actions</strong> — sur la durée de la mission, par axe et par phase, avec identification des points de coordination et de validation avec la MLPB</div></li>
+  </ol>
+
+  <div class="stitle"><span class="stag" style="background:var(--rouge)">§ 6.3</span> Critères d'analyse des offres</div>
+  <table class="ctable">
+    <thead><tr><th>Critère</th><th>Description</th><th style="width:110px">Pondération</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Pertinence de l'approche intégrée</strong></td>
+        <td>Le prestataire démontre-t-il une réelle capacité à articuler communication, événementiel et terrain de façon cohérente — pas trois prestations séparées ?</td>
+        <td><div class="cbar"><div class="cpip on" style="background:var(--rouge)"></div><div class="cpip on" style="background:var(--rouge)"></div><div class="cpip on" style="background:var(--rouge)"></div><div class="cpip on" style="background:var(--rouge)"></div><div class="cpip on" style="background:var(--rouge)"></div></div></td>
+      </tr>
+      <tr>
+        <td><strong>Qualité méthodologique</strong></td>
+        <td>La proposition détaille-t-elle des méthodes concrètes, adaptées à chaque axe, réalistes et cohérentes avec les attendus du cahier des charges ?</td>
+        <td><div class="cbar"><div class="cpip on" style="background:var(--rose)"></div><div class="cpip on" style="background:var(--rose)"></div><div class="cpip on" style="background:var(--rose)"></div><div class="cpip on" style="background:var(--rose)"></div><div class="cpip on" style="background:var(--rose)"></div></div></td>
+      </tr>
+      <tr>
+        <td><strong>Capacité d'innovation</strong></td>
+        <td>Les formats et outils proposés sont-ils innovants et réellement différenciants par rapport à une communication institutionnelle classique ?</td>
+        <td><div class="cbar"><div class="cpip on" style="background:var(--orange)"></div><div class="cpip on" style="background:var(--orange)"></div><div class="cpip on" style="background:var(--orange)"></div><div class="cpip on" style="background:var(--orange)"></div><div class="cpip off" style="background:var(--orange)"></div></div></td>
+      </tr>
+      <tr>
+        <td><strong>Compréhension des publics jeunes</strong></td>
+        <td>Le prestataire démontre-t-il une connaissance réelle des codes et des freins des jeunes 16–25 ans NEET, en contexte rural ou péri-urbain basque ?</td>
+        <td><div class="cbar"><div class="cpip on" style="background:var(--bleu)"></div><div class="cpip on" style="background:var(--bleu)"></div><div class="cpip on" style="background:var(--bleu)"></div><div class="cpip on" style="background:var(--bleu)"></div><div class="cpip on" style="background:var(--bleu)"></div></div></td>
+      </tr>
+      <tr>
+        <td><strong>Cohérence budgétaire</strong></td>
+        <td>Le budget est-il ventilé par axe, justifié, réaliste et proportionné aux résultats attendus ? Un budget non détaillé sera pénalisé.</td>
+        <td><div class="cbar"><div class="cpip on" style="background:var(--vert)"></div><div class="cpip on" style="background:var(--vert)"></div><div class="cpip on" style="background:var(--vert)"></div><div class="cpip off" style="background:var(--vert)"></div><div class="cpip off" style="background:var(--vert)"></div></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notice" style="border-left-color:var(--vert);background:#f5fbee">
+    <div class="ntitle" style="color:var(--vert)">Rappel fondamental — Logique de la mission</div>
+    Cette mission ne peut pas être découpée par axe et confiée à des prestataires différents. La valeur ajoutée attendue réside précisément dans la <strong>complémentarité entre la communication (A2), la formation (A4) et les actions terrain (A5)</strong>. Un prestataire qui ne couvre pas les trois axes avec une approche intégrée ne peut pas répondre à ce cahier des charges.
+  </div>
+</div>
+
+</main>
+</div>
+
+<footer class="doc-footer">
+  <div><strong>Mission Locale Pays Basque</strong> · Projet LANEAN · Cahier des charges prestataire</div>
+  <div>Financement POCTEFA · 4 territoires basques · Publics 16–25 ans</div>
+  <div>Document interactif — usage prestataire</div>
+</footer>
+
+<script>
+const SECS=['accueil','contexte','principes','a2','a4','a5','profil'];
+
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  document.querySelectorAll('.tnav').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sitem').forEach(s=>s.classList.remove('active'));
+  if(btn){btn.classList.add('active');}
+  else{
+    document.querySelectorAll('.tnav').forEach(t=>{
+      if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+id+"'")){t.classList.add('active');}
+    });
+  }
+  document.querySelectorAll('.sitem').forEach(s=>{
+    if(s.getAttribute('onclick')&&s.getAttribute('onclick').includes("'"+id+"'")){s.classList.add('active');}
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleAcc(item){item.classList.toggle('open');}
+function togglePhase(block){block.classList.toggle('open');}
+
+// wire topnav active state
+document.querySelectorAll('.tnav').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tnav').forEach(t=>t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// open first accordion item per section for discoverability
+document.querySelectorAll('.accordion').forEach(acc=>{
+  const first=acc.querySelector('.acc-item');
+  if(first)first.classList.add('open');
+});
+</script>
+</body>
+</html>
